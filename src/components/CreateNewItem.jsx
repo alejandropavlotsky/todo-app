@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { ListItems } from "./ListItems";
 
-export const CreateNewItem = ({setItemsList, itemsList}) => {
+export const CreateNewItem = ({ setItemsList, itemsList }) => {
   const [todoItem, setTodoItem] = useState("");
 
   const handleAddItem = (e) => {
     if (todoItem.trim() !== "") {
       setItemsList([...itemsList, todoItem]);
-      setTodoItem("")
+      setTodoItem("");
     }
   };
+
 
   return (
     <>
@@ -18,13 +19,13 @@ export const CreateNewItem = ({setItemsList, itemsList}) => {
         text="Agregar nueva tarea"
         placeholder="Agregar nueva tarea"
         name="new-item"
-        value={ todoItem }
+        value={todoItem}
         onChange={(e) => setTodoItem(e.target.value)}
       />
-      <button onClick={handleAddItem }>Crear</button>
+      <button onClick={handleAddItem}>Crear</button>
       <ul>
-        <ListItems itemsList={ itemsList } />
-    </ul>
+        <ListItems itemsList={itemsList} handleDeleteItem={(id)=> handleDeleteItem(id)} setItemsList={setItemsList}/>
+      </ul>
     </>
   );
 };
